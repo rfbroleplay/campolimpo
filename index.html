@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receita Federal — Simulação SAMPA ROLEPLAY (Não Oficial)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                container: {
+                    screens: {}
+                },
+                extend: {
+                    colors: {
+                        'gov-blue': '#1351B4',
+                        'gov-dark': '#0C326F',
+                        'gov-light': '#F8F9FA',
+                        'gov-green': '#00884A',
+                        'gov-yellow': '#FFCD00'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F3F4F6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+            padding-top: 9.5rem; /* Space for fixed header */
+        }
+        .page-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        .page-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+        
+        /* Focus styles for accessibility */
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1351B4;
+            box-shadow: 0 0 0 3px rgba(19, 81, 180, 0.2);
+        }
+
+        /* --- Botões com mais vida --- */
+        .btn-viva {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background-position 0.4s ease;
+            transform: translateZ(0);
+        }
+        .btn-viva:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 10px 20px -6px rgba(19, 81, 180, 0.45);
+        }
+        .btn-viva:active {
+            transform: translateY(0) scale(0.98);
+        }
+        .btn-brasil {
+            background: linear-gradient(135deg, #1351B4 0%, #0C326F 60%, #00884A 100%);
+            background-size: 180% 180%;
+            background-position: 0% 0%;
+        }
+        .btn-brasil:hover {
+            background-position: 100% 100%;
+        }
+        .btn-denuncia {
+            background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .selo-badge {
+            animation: pulseGlow 2.4s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0,136,74,0.35); }
+            50% { box-shadow: 0 0 0 6px rgba(0,136,74,0); }
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <header class="fixed w-full top-0 z-50 bg-white shadow-md border-b border-gray-200 transition-all">
+        <!-- Micro-barra padrão Governo Federal -->
+        <div class="bg-gov-dark text-blue-100 text-[11px] md:text-xs">
+            <div class="container mx-auto px-4 lg:px-8 flex items-center justify-between py-1">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-gamepad"></i> SIMULAÇÃO SAMPA ROLEPLAY — inspirado na Receita Federal, não é órgão oficial</span>
+                <span class="hidden sm:flex items-center gap-1.5 font-semibold"><i class="fa-solid fa-shield-halved text-gov-yellow"></i> Ambiente fictício de RP</span>
+            </div>
+        </div>
+        <!-- Gov.br top colored bar -->
+        <div class="w-full flex h-1.5">
+            <div class="bg-gov-green w-1/3"></div>
+            <div class="bg-gov-yellow w-1/3"></div>
+            <div class="bg-gov-blue w-1/3"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex justify-between items-center py-2 min-h-[5rem]">
+                <!-- Logos -->
+                <div class="flex items-center gap-3 md:gap-6 cursor-pointer" onclick="navigate('sec-inicio')">
+                    <img src="https://i.ibb.co/GLzS2B6/image.png" alt="Logo Receita Federal" class="h-16 md:h-24 object-contain">
+                    <div class="h-12 md:h-16 w-px bg-gray-300"></div>
+                    <img src="https://i.ibb.co/gLbc8NsP/image.png" alt="Logo Secundária" class="h-12 md:h-20 object-contain">
+                    <div class="h-12 md:h-16 w-px bg-gray-300"></div>
+                    <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/330px-Flag_of_Brazil.svg.png?utm_source=pt.wikipedia.org&utm_campaign=parser&utm_content=thumbnail" alt="Bandeira do Brasil" class="h-9 md:h-16 object-contain">
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <nav class="flex items-center gap-1 bg-gray-100 rounded-full p-1.5 shadow-inner">
+                        <button onclick="navigate('sec-inicio')" id="nav-inicio" class="nav-link px-4 py-2.5 rounded-full text-sm font-semibold text-gray-700 hover:bg-white hover:shadow-sm transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-house text-xs"></i> Início
+                        </button>
+                        <button onclick="navigate('sec-cnpj')" id="nav-cnpj" class="nav-link px-4 py-2.5 rounded-full text-sm font-semibold text-gray-700 hover:bg-white hover:shadow-sm transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-building-flag text-xs"></i> Abertura de CNPJ
+                        </button>
+                        <button onclick="navigate('sec-ir')" id="nav-ir" class="nav-link px-4 py-2.5 rounded-full text-sm font-semibold text-gray-700 hover:bg-white hover:shadow-sm transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-file-invoice-dollar text-xs"></i> Imposto de Renda
+                        </button>
+                        <button onclick="navigate('sec-denuncia')" id="nav-denuncia" class="nav-link px-4 py-2.5 rounded-full text-sm font-semibold text-gray-700 hover:bg-white hover:shadow-sm transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-bullhorn text-xs"></i> Denúncia Anônima
+                        </button>
+                        <button onclick="navigate('sec-concurso')" id="nav-concurso" class="nav-link px-4 py-2.5 rounded-full text-sm font-semibold text-gray-700 hover:bg-white hover:shadow-sm transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-user-graduate text-xs"></i> Concurso
+                        </button>
+                    </nav>
+
+                    <div class="h-10 w-px bg-gray-200"></div>
+
+                    <a href="https://discord.gg/29sYBhN8FC" target="_blank" rel="noopener" class="btn-viva flex items-center gap-2 bg-[#5865F2] text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md">
+                        <i class="fa-brands fa-discord"></i> Nosso Discord
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="btn-viva text-gray-600 hover:text-gov-blue focus:outline-none p-2 rounded-md bg-gray-100">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-200 shadow-xl absolute w-full z-40 max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <div class="px-4 py-4 space-y-2">
+                <button onclick="navigate('sec-inicio')" class="w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-gov-blue hover:bg-blue-50 flex items-center gap-3"><i class="fa-solid fa-house w-4 text-center"></i> Início</button>
+                <button onclick="navigate('sec-cnpj')" class="w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-gov-blue hover:bg-blue-50 flex items-center gap-3"><i class="fa-solid fa-building-flag w-4 text-center"></i> Abertura de CNPJ</button>
+                <button onclick="navigate('sec-ir')" class="w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-gov-blue hover:bg-blue-50 flex items-center gap-3"><i class="fa-solid fa-file-invoice-dollar w-4 text-center"></i> Imposto de Renda</button>
+                <button onclick="navigate('sec-denuncia')" class="w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-gov-blue hover:bg-blue-50 flex items-center gap-3"><i class="fa-solid fa-bullhorn w-4 text-center"></i> Denúncia Anônima</button>
+                <button onclick="navigate('sec-concurso')" class="w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-gov-blue hover:bg-blue-50 flex items-center gap-3"><i class="fa-solid fa-user-graduate w-4 text-center"></i> Concurso</button>
+                <div class="border-t border-gray-200 pt-2 mt-2 space-y-2">
+                    <a href="https://discord.gg/29sYBhN8FC" target="_blank" rel="noopener" class="btn-viva w-full flex items-center justify-center gap-2 bg-[#5865F2] text-white font-bold text-sm px-5 py-3 rounded-full shadow-md">
+                        <i class="fa-brands fa-discord"></i> Nosso Discord
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="mb-12">
+        
+        <!-- ============================== -->
+        <!-- SEÇÃO: INÍCIO                  -->
+        <!-- ============================== -->
+        <section id="sec-inicio" class="page-section active">
+            <!-- Hero Banner -->
+            <div class="text-white pt-16 pb-20 px-4 relative overflow-hidden" style="background-image: url('https://t2.tudocdn.net/668858?w=1920'); background-size: cover; background-position: center;">
+                <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/80 via-black/60 to-black/30 pointer-events-none"></div>
+                <div class="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center justify-between relative z-10">
+                    <div class="md:w-3/5 pr-0 md:pr-8 mb-8 md:mb-0">
+                        <span class="selo-badge inline-flex items-center gap-2 bg-gov-green/20 border border-gov-green text-green-200 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+                            <i class="fa-solid fa-gamepad"></i> Simulação SAMPA ROLEPLAY • Não Oficial
+                        </span>
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">Receita Federal do Brasil</h1>
+                        <p class="text-xl text-blue-100 mb-8 font-light">Abertura de CNPJ, Imposto de Renda e Denúncia Anônima — tudo em um só lugar.</p>
+                        
+                        <!-- Atalhos rápidos -->
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="navigate('sec-cnpj')" class="btn-viva btn-brasil text-white px-5 py-3 rounded-full font-semibold text-sm flex items-center gap-2 shadow-lg">
+                                <i class="fa-solid fa-building-flag"></i> Abrir CNPJ
+                            </button>
+                            <button onclick="navigate('sec-ir')" class="btn-viva bg-white text-gov-dark px-5 py-3 rounded-full font-semibold text-sm flex items-center gap-2 shadow-lg">
+                                <i class="fa-solid fa-file-invoice-dollar text-gov-blue"></i> Imposto de Renda
+                            </button>
+                            <button onclick="navigate('sec-denuncia')" class="btn-viva btn-denuncia text-white px-5 py-3 rounded-full font-semibold text-sm flex items-center gap-2 shadow-lg">
+                                <i class="fa-solid fa-bullhorn"></i> Denúncia Anônima
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mx-auto max-w-6xl px-4 -mt-8 relative z-10">
+                <!-- Avisos -->
+                <div class="bg-white border-l-4 border-gov-yellow rounded-lg shadow-md p-5 mb-10 flex items-start">
+                    <i class="fa-solid fa-circle-exclamation text-yellow-500 text-xl mr-4 mt-0.5"></i>
+                    <div>
+                        <h3 class="font-bold text-gray-800">Atenção ao Prazo do IRPF 2026</h3>
+                        <p class="text-sm text-gray-600 mt-1">O prazo para entrega da Declaração do Imposto de Renda Pessoa Física se encerra em breve. Não deixe para a última hora.</p>
+                    </div>
+                </div>
+
+                <!-- Serviços em Destaque -->
+                <h2 id="destaques" class="text-2xl font-bold text-gov-dark mb-6 border-b pb-2">Serviços em Destaque</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+                    <div onclick="navigate('sec-cnpj')" class="btn-viva bg-white rounded-xl shadow-sm border border-gray-200 p-6 cursor-pointer group">
+                        <div class="w-14 h-14 bg-blue-50 text-gov-blue rounded-full flex items-center justify-center text-2xl mb-4 group-hover:bg-gov-blue group-hover:text-white transition-colors duration-300">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Abrir CNPJ</h3>
+                        <p class="text-sm text-gray-500 mb-4 line-clamp-2">Inicie o processo de formalização do seu negócio de forma rápida.</p>
+                        <span class="text-gov-blue text-sm font-semibold flex items-center">Acessar <i class="fa-solid fa-arrow-right ml-2 text-xs transition-transform group-hover:translate-x-1"></i></span>
+                    </div>
+
+                    <div onclick="navigate('sec-ir')" class="btn-viva bg-white rounded-xl shadow-sm border border-gray-200 p-6 cursor-pointer group">
+                        <div class="w-14 h-14 bg-green-50 text-gov-green rounded-full flex items-center justify-center text-2xl mb-4 group-hover:bg-gov-green group-hover:text-white transition-colors duration-300">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Imposto de Renda</h3>
+                        <p class="text-sm text-gray-500 mb-4 line-clamp-2">Simule o valor devido ou restituído do seu IRPF em segundos.</p>
+                        <span class="text-gov-green text-sm font-semibold flex items-center">Acessar <i class="fa-solid fa-arrow-right ml-2 text-xs transition-transform group-hover:translate-x-1"></i></span>
+                    </div>
+
+                    <div onclick="navigate('sec-denuncia')" class="btn-viva bg-white rounded-xl shadow-sm border border-gray-200 p-6 cursor-pointer group">
+                        <div class="w-14 h-14 bg-red-50 text-red-600 rounded-full flex items-center justify-center text-2xl mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors duration-300">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Denúncia Anônima</h3>
+                        <p class="text-sm text-gray-500 mb-4 line-clamp-2">Comunique irregularidades fiscais ou aduaneiras com sigilo garantido.</p>
+                        <span class="text-red-600 text-sm font-semibold flex items-center">Acessar <i class="fa-solid fa-arrow-right ml-2 text-xs transition-transform group-hover:translate-x-1"></i></span>
+                    </div>
+                </div>
+
+                <!-- Faixa de confiança / estilo Brasil -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+                    <div class="bg-white rounded-xl border-t-4 border-gov-green shadow-sm p-6 text-center">
+                        <i class="fa-solid fa-lock text-3xl text-gov-green mb-3"></i>
+                        <h4 class="font-bold text-gray-800 mb-1">100% Seguro</h4>
+                        <p class="text-sm text-gray-500">Conexão protegida e dados tratados com sigilo fiscal.</p>
+                    </div>
+                    <div class="bg-white rounded-xl border-t-4 border-gov-yellow shadow-sm p-6 text-center">
+                        <i class="fa-solid fa-bolt text-3xl text-yellow-500 mb-3"></i>
+                        <h4 class="font-bold text-gray-800 mb-1">Atendimento Digital</h4>
+                        <p class="text-sm text-gray-500">Serviços disponíveis 24 horas, sem filas ou agendamento.</p>
+                    </div>
+                    <div class="bg-white rounded-xl border-t-4 border-gov-blue shadow-sm p-6 text-center">
+                        <i class="fa-solid fa-user-shield text-3xl text-gov-blue mb-3"></i>
+                        <h4 class="font-bold text-gray-800 mb-1">Sigilo Garantido</h4>
+                        <p class="text-sm text-gray-500">Identidade preservada em denúncias e solicitações.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== -->
+        <!-- SEÇÃO: CNPJ                    -->
+        <!-- ============================== -->
+        <section id="sec-cnpj" class="page-section container mx-auto max-w-5xl px-4 py-8">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gov-dark mb-2">Solicitação de Abertura de CNPJ</h2>
+                <p class="text-gray-600">Formalize seu negócio preenchendo os dados abaixo.</p>
+            </div>
+
+            <!-- Custos por Porte (apenas informativo) -->
+            <div class="mb-8">
+                <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info text-gov-blue"></i> Custo de Abertura por Porte de Empresa
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="btn-viva bg-white rounded-xl border-t-4 border-gov-green shadow-sm p-5 text-center">
+                        <span class="block text-xs font-bold text-gov-green uppercase tracking-wide mb-1">Pequena Empresa</span>
+                        <span class="block text-2xl font-bold text-gray-800">R$ 150.000</span>
+                    </div>
+                    <div class="btn-viva bg-white rounded-xl border-t-4 border-gov-yellow shadow-sm p-5 text-center">
+                        <span class="block text-xs font-bold text-yellow-600 uppercase tracking-wide mb-1">Média Empresa</span>
+                        <span class="block text-2xl font-bold text-gray-800">R$ 450.000</span>
+                    </div>
+                    <div class="btn-viva bg-white rounded-xl border-t-4 border-gov-blue shadow-sm p-5 text-center">
+                        <span class="block text-xs font-bold text-gov-blue uppercase tracking-wide mb-1">Grande Empresa</span>
+                        <span class="block text-2xl font-bold text-gray-800">R$ 850.000</span>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-400 mt-2">* Valores exibidos apenas para fins informativos/de ambientação.</p>
+            </div>
+
+            <!-- Formulário de Abertura -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-gov-blue via-gov-dark to-gov-green px-6 py-5 flex items-center gap-3">
+                    <span class="w-2 h-9 rounded-full bg-gov-yellow"></span>
+                    <span class="w-2 h-9 rounded-full bg-white"></span>
+                    <span class="w-2 h-9 rounded-full bg-gov-yellow"></span>
+                    <h3 class="text-xl font-bold text-white ml-2 flex items-center gap-2"><i class="fa-solid fa-building-flag"></i> Dados da Empresa</h3>
+                </div>
+                <div class="p-6 md:p-8">
+                    <form id="form-cnpj" onsubmit="handleFormSubmit(event, 'CNPJ')">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nome Empresarial (Razão Social) *</label>
+                                <input type="text" id="cnpj-razao" required class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Ex: Empresa Silva LTDA">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nome Fantasia</label>
+                                <input type="text" id="cnpj-fantasia" class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Ex: Mercadinho Silva">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">RG SAMPA do Responsável *</label>
+                                <input type="text" id="cnpj-rg" required class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="00.000.000-SP">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Tipo de Empresa *</label>
+                                <select required id="tipo-empresa" onchange="toggleSocios()" class="w-full border border-gray-300 rounded-md p-2.5 text-sm bg-white">
+                                    <option value="">Selecione...</option>
+                                    <option value="ei">EI - Empresário Individual</option>
+                                    <option value="ltda">Sociedade Limitada (LTDA)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Atividade Principal (CNAE) *</label>
+                                <input type="text" id="cnpj-cnae" required class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Ex: Comércio Varejista">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Capital Social (R$) *</label>
+                                <input type="number" id="cnpj-capital" required min="0" step="0.01" class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Ex: 10000.00">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Porte da Empresa *</label>
+                                <select required id="cnpj-porte" class="w-full border border-gray-300 rounded-md p-2.5 text-sm bg-white">
+                                    <option value="">Selecione...</option>
+                                    <option value="pequena">Pequena Empresa</option>
+                                    <option value="media">Média Empresa</option>
+                                    <option value="grande">Grande Empresa</option>
+                                </select>
+                            </div>
+
+                            <div id="box-socios" class="md:col-span-2 hidden border border-gray-200 rounded-lg p-4 bg-blue-50/50">
+                                <div class="flex items-center justify-between mb-3">
+                                    <label class="block text-sm font-semibold text-gray-700"><i class="fa-solid fa-people-group mr-2 text-gov-blue"></i>Sócios da Empresa *</label>
+                                    <button type="button" onclick="addSocio()" class="btn-viva flex items-center gap-1 text-xs font-bold text-white bg-gov-blue px-3 py-1.5 rounded-full">
+                                        <i class="fa-solid fa-plus"></i> Adicionar Sócio
+                                    </button>
+                                </div>
+                                <div id="lista-socios" class="space-y-2">
+                                    <div class="flex gap-2">
+                                        <input type="text" name="socio[]" class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Nome completo do sócio">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="md:col-span-2 border-t pt-4 mt-2">
+                                <h4 class="font-semibold text-gray-800 mb-4">Endereço e Contato</h4>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Endereço Completo *</label>
+                                <input type="text" id="cnpj-endereco" required class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Rua, número, complemento">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Cidade / Estado *</label>
+                                <div class="flex gap-2">
+                                    <input type="text" id="cnpj-cidade" required class="w-2/3 border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Cidade">
+                                    <select required id="cnpj-uf" class="w-1/3 border border-gray-300 rounded-md p-2.5 text-sm bg-white">
+                                        <option value="">UF</option>
+                                        <option value="SP">SP</option>
+                                        <option value="RJ">RJ</option>
+                                        <option value="MG">MG</option>
+                                        <option value="OUTROS">Outros</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Telefone *</label>
+                                <input type="tel" id="cnpj-telefone" required class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="(00) 00000-0000">
+                            </div>
+                        </div>
+
+                        <div class="mt-8 flex justify-end">
+                            <button type="submit" class="btn-viva btn-brasil text-white font-semibold py-3 px-8 rounded-full shadow-md flex items-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> Enviar Solicitação
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== -->
+        <!-- SEÇÃO: IMPOSTO DE RENDA        -->
+        <!-- ============================== -->
+        <section id="sec-ir" class="page-section container mx-auto max-w-5xl px-4 py-8">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gov-dark mb-2">Imposto de Renda Pessoa Física</h2>
+                <p class="text-gray-600">Simule o cálculo do seu IRPF de forma rápida e visual.</p>
+            </div>
+
+            <!-- Aviso de indisponibilidade -->
+            <div class="bg-yellow-50 border-l-4 border-gov-yellow rounded-lg shadow-sm p-5 mb-8 flex items-start">
+                <i class="fa-solid fa-triangle-exclamation text-yellow-500 text-xl mr-4 mt-0.5"></i>
+                <div>
+                    <h3 class="font-bold text-gray-800">Serviço Temporariamente Indisponível</h3>
+                    <p class="text-sm text-gray-600 mt-1">O serviço de Imposto de Renda está indisponível no momento. Pedimos desculpas pelo transtorno e voltaremos em breve.</p>
+                </div>
+            </div>
+
+            <!-- Simulator -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-gov-green via-gov-dark to-gov-blue px-6 py-5 flex items-center gap-3">
+                    <span class="w-2 h-9 rounded-full bg-gov-yellow"></span>
+                    <span class="w-2 h-9 rounded-full bg-white"></span>
+                    <span class="w-2 h-9 rounded-full bg-gov-yellow"></span>
+                    <h3 class="text-xl font-bold text-white ml-2 flex items-center gap-2"><i class="fa-solid fa-calculator"></i> Simulador de Imposto de Renda</h3>
+                </div>
+                <div class="flex flex-col lg:flex-row">
+                <div class="lg:w-2/3 p-6 md:p-8">
+                    <p class="text-sm text-gray-500 mb-6 pb-4 border-b">Calcule o imposto devido de forma simplificada (apenas demonstração).</p>
+                    
+                    <form id="form-simulador" onsubmit="simulateIR(event)">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nome do Contribuinte</label>
+                                <input type="text" id="sim-nome" required class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Nome Completo">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Rendimentos Tributáveis Anuais (R$)</label>
+                                <input type="number" id="sim-renda" required min="0" step="0.01" class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Ex: 60000.00">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Deduções Anuais (R$)</label>
+                                <input type="number" id="sim-deducoes" required min="0" step="0.01" value="0" class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Saúde, Educação, etc.">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Número de Dependentes</label>
+                                <input type="number" id="sim-dependentes" required min="0" value="0" class="w-full border border-gray-300 rounded-md p-2.5 text-sm">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-viva w-full md:w-auto text-white font-semibold py-3 px-8 rounded-full shadow-md flex items-center justify-center gap-2" style="background: linear-gradient(135deg, #00884A 0%, #0C326F 100%);">
+                            <i class="fa-solid fa-calculator"></i> Calcular Simulação
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Resultado Simulador -->
+                <div class="lg:w-1/3 bg-gray-50 p-6 md:p-8 border-t lg:border-t-0 lg:border-l border-gray-200 flex flex-col justify-center">
+                    <div id="sim-placeholder" class="text-center text-gray-400">
+                        <i class="fa-solid fa-chart-pie text-5xl mb-4 opacity-50"></i>
+                        <p class="text-sm">Preencha os dados e calcule para ver o resultado da simulação aqui.</p>
+                    </div>
+
+                    <div id="sim-resultado" class="hidden">
+                        <h4 class="text-sm font-bold uppercase text-gray-500 mb-4 tracking-wider text-center" id="sim-res-nome">Resultado</h4>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between border-b pb-1">
+                                <span class="text-sm text-gray-600">Base de Cálculo</span>
+                                <span class="text-sm font-bold text-gray-800" id="sim-res-base">R$ 0,00</span>
+                            </div>
+                            <div class="flex justify-between border-b pb-1">
+                                <span class="text-sm text-gray-600">Alíquota Efetiva</span>
+                                <span class="text-sm font-bold text-gray-800" id="sim-res-aliq">0%</span>
+                            </div>
+                        </div>
+
+                        <div id="sim-res-box" class="p-4 rounded-lg text-center bg-white border">
+                            <span class="block text-xs font-semibold text-gray-500 uppercase mb-1">Imposto Devido</span>
+                            <span class="block text-2xl font-bold" id="sim-res-valor">R$ 0,00</span>
+                        </div>
+                        
+                        <p class="text-xs text-center text-gray-400 mt-4">* Cálculos fictícios. Não possui valor legal.</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== -->
+        <!-- SEÇÃO: DENÚNCIA ANÔNIMA        -->
+        <!-- ============================== -->
+        <section id="sec-denuncia" class="page-section container mx-auto max-w-4xl px-4 py-8">
+            <div class="mb-8 text-center">
+                <div class="inline-block bg-red-100 text-red-600 p-4 rounded-full mb-4">
+                    <i class="fa-solid fa-user-secret text-4xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gov-dark mb-2">Canal de Denúncia Anônima</h2>
+                <p class="text-gray-600">Comunique indícios de sonegação, contrabando, pirataria ou fraudes à Receita Federal.<br>O sigilo é absoluto e garantido por lei.</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-red-600 via-red-800 to-gov-dark px-6 py-5 flex items-center gap-3">
+                    <span class="w-2 h-9 rounded-full bg-white"></span>
+                    <span class="w-2 h-9 rounded-full bg-gov-yellow"></span>
+                    <span class="w-2 h-9 rounded-full bg-white"></span>
+                    <h3 class="text-xl font-bold text-white ml-2 flex items-center gap-2"><i class="fa-solid fa-shield-halved"></i> Formulário de Denúncia</h3>
+                </div>
+                <div class="p-6 md:p-8">
+                <form id="form-denuncia" onsubmit="handleFormSubmit(event, 'Denúncia')">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Categoria da Ocorrência *</label>
+                            <select required id="den-categoria" class="w-full border border-gray-300 rounded-md p-3 text-sm bg-white">
+                                <option value="">Selecione o tipo de crime/fraude...</option>
+                                <option value="sonegacao">Sonegação de Impostos</option>
+                                <option value="contrabando">Contrabando ou Descaminho</option>
+                                <option value="pirataria">Falsificação / Pirataria</option>
+                                <option value="fraude">Fraude Aduaneira</option>
+                                <option value="outros">Outras Irregularidades</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Local da Ocorrência (Cidade/UF) *</label>
+                            <input type="text" id="den-local" required class="w-full border border-gray-300 rounded-md p-3 text-sm" placeholder="Onde o fato ocorreu?">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Data Aproximada do Fato</label>
+                            <input type="date" id="den-data" class="w-full border border-gray-300 rounded-md p-3 text-sm">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Descrição Detalhada da Denúncia *</label>
+                            <p class="text-xs text-gray-500 mb-2">Informe o máximo de detalhes possível: quem, o que, quando, onde e como. Nomes, empresas, placas de veículos, endereços.</p>
+                            <textarea required id="den-descricao" rows="6" class="w-full border border-gray-300 rounded-md p-3 text-sm resize-none" placeholder="Escreva os detalhes aqui..."></textarea>
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Link de Evidências (foto) — opcional</label>
+                            <input type="text" id="den-link" class="w-full border border-gray-300 rounded-md p-3 text-sm" placeholder="https://imgur.com/...">
+                            <p class="text-xs text-gray-500 mt-1">Cole aqui o link da foto/print. Sugerimos usar o <a href="https://imgur.com" target="_blank" class="text-gov-blue underline">Imgur</a> para hospedar a imagem e colar o link gerado.</p>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-6 mt-4">
+                        <div class="flex items-start mb-6">
+                            <input id="chk-veracidade" type="checkbox" required class="mt-1 w-4 h-4 text-gov-blue rounded border-gray-300">
+                            <label for="chk-veracidade" class="ml-2 text-sm text-gray-700">
+                                Declaro estar ciente de que a comunicação de falso crime sujeita o denunciante às sanções penais e civis cabíveis.
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn-viva btn-denuncia w-full text-white font-bold py-3 px-6 rounded-full text-lg flex justify-center items-center gap-2 shadow-lg">
+                            <i class="fa-solid fa-paper-plane"></i> Enviar Denúncia de Forma Segura
+                        </button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== -->
+        <!-- SEÇÃO: CONCURSO                -->
+        <!-- ============================== -->
+        <section id="sec-concurso" class="page-section container mx-auto max-w-5xl px-4 py-8">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gov-dark mb-2">Concurso Público — Receita Federal</h2>
+                <p class="text-gray-600">Preencha o formulário abaixo para se inscrever no processo seletivo.</p>
+            </div>
+
+            <!-- Aviso sobre notificação via Discord -->
+            <div class="bg-blue-50 border-l-4 border-gov-blue rounded-lg shadow-sm p-5 mb-8 flex items-start">
+                <i class="fa-brands fa-discord text-gov-blue text-xl mr-4 mt-0.5"></i>
+                <div>
+                    <h3 class="font-bold text-gray-800">Fique atento ao seu Discord</h3>
+                    <p class="text-sm text-gray-600 mt-1">O resultado da sua inscrição será notificado através do Discord. Preencha o ID corretamente para não perder o contato.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-indigo-700 via-gov-dark to-gov-blue px-6 py-5 flex items-center gap-3">
+                    <span class="w-2 h-9 rounded-full bg-gov-yellow"></span>
+                    <span class="w-2 h-9 rounded-full bg-white"></span>
+                    <span class="w-2 h-9 rounded-full bg-gov-yellow"></span>
+                    <h3 class="text-xl font-bold text-white ml-2 flex items-center gap-2"><i class="fa-solid fa-user-graduate"></i> Formulário de Inscrição</h3>
+                </div>
+                <div class="p-6 md:p-8">
+                    <form id="form-concurso" onsubmit="handleFormSubmit(event, 'Concurso')">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nome Completo (Vida Real) *</label>
+                                <input type="text" id="con-nome-real" required class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Seu nome completo">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nome do Personagem *</label>
+                                <input type="text" id="con-nome-personagem" required class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Nome do seu personagem no RP">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Idade (Fora do RP) *</label>
+                                <input type="number" id="con-idade" required min="1" class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Sua idade real">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">RG do Personagem *</label>
+                                <input type="text" id="con-rg-personagem" required class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="00.000.000-SP">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">ID do Discord *</label>
+                                <input type="text" id="con-discord" required class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Ex: usuario#0000 ou seu @">
+                                <p class="text-xs text-gray-500 mt-1"><i class="fa-brands fa-discord mr-1"></i>Iremos notificar o resultado da sua inscrição através do Discord — preencha com atenção.</p>
+                            </div>
+
+                            <div class="md:col-span-2 border-t pt-4 mt-2">
+                                <h4 class="font-semibold text-gray-800 mb-1">Questionário</h4>
+                                <p class="text-xs text-gray-500">Responda com atenção. Cada resposta precisa ter no mínimo 40 caracteres.</p>
+                            </div>
+
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Por que você se interessou em trabalhar na Receita Federal? *</label>
+                                <textarea id="con-interesse" required minlength="40" rows="3" class="w-full border border-gray-300 rounded-md p-2.5 text-sm resize-none" placeholder="Escreva sua resposta aqui..."></textarea>
+                                <p class="text-xs text-gray-400 mt-1">Mínimo de 40 caracteres.</p>
+                            </div>
+
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Qual é a função da Receita Federal? *</label>
+                                <textarea id="con-funcao" required minlength="40" rows="3" class="w-full border border-gray-300 rounded-md p-2.5 text-sm resize-none" placeholder="Escreva sua resposta aqui..."></textarea>
+                                <p class="text-xs text-gray-400 mt-1">Mínimo de 40 caracteres.</p>
+                            </div>
+
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Quais são suas principais características boas e ruins? *</label>
+                                <textarea id="con-caracteristicas" required minlength="40" rows="3" class="w-full border border-gray-300 rounded-md p-2.5 text-sm resize-none" placeholder="Escreva sua resposta aqui..."></textarea>
+                                <p class="text-xs text-gray-400 mt-1">Mínimo de 40 caracteres.</p>
+                            </div>
+
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Explique a função aduaneira. *</label>
+                                <textarea id="con-aduaneira" required minlength="40" rows="3" class="w-full border border-gray-300 rounded-md p-2.5 text-sm resize-none" placeholder="Escreva sua resposta aqui..."></textarea>
+                                <p class="text-xs text-gray-400 mt-1">Mínimo de 40 caracteres.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 flex justify-end">
+                            <button type="submit" class="btn-viva text-white font-semibold py-3 px-8 rounded-full shadow-md flex items-center gap-2" style="background: linear-gradient(135deg, #4338CA 0%, #0C326F 60%, #1351B4 100%);">
+                                <i class="fa-solid fa-paper-plane"></i> Enviar Inscrição
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gov-dark text-white pt-12 pb-6 mt-auto border-t-4 border-gov-blue">
+        <div class="container mx-auto max-w-6xl px-4 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between mb-8 pb-8 border-b border-blue-900 gap-8">
+                
+                <div class="md:w-1/3">
+                    <div class="bg-white p-3 inline-flex items-center gap-4 rounded mb-4">
+                        <img src="https://i.ibb.co/GLzS2B6/image.png" alt="Logo Receita Federal" class="h-12 md:h-14 object-contain">
+                        <div class="h-10 w-px bg-gray-300"></div>
+                        <img src="https://i.ibb.co/gLbc8NsP/image.png" alt="Logo Secundária" class="h-10 md:h-12 object-contain">
+                    </div>
+                    <p class="text-sm text-blue-200 leading-relaxed">
+                        Secretaria Especial da Receita Federal do Brasil.<br>
+                        Ministério da Fazenda.<br>
+                        Governo Federal.
+                    </p>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="text-lg font-bold mb-4">Acesso Rápido</h4>
+                    <ul class="space-y-2 text-sm text-blue-200">
+                        <li><a href="#" onclick="navigate('sec-inicio'); return false;" class="hover:text-white transition">Página Inicial</a></li>
+                        <li><a href="#" onclick="navigate('sec-cnpj'); return false;" class="hover:text-white transition">Abertura de CNPJ</a></li>
+                        <li><a href="#" onclick="navigate('sec-ir'); return false;" class="hover:text-white transition">Imposto de Renda</a></li>
+                        <li><a href="#" onclick="navigate('sec-denuncia'); return false;" class="hover:text-white transition">Ouvidoria e Denúncias</a></li>
+                        <li><a href="#" onclick="navigate('sec-concurso'); return false;" class="hover:text-white transition">Concurso</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="text-lg font-bold mb-4">Redes Sociais Oficiais</h4>
+                    <div class="flex space-x-4 text-xl text-blue-200">
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col items-center justify-center text-center">
+                <div class="bg-blue-900/50 rounded-lg p-4 border border-blue-800 max-w-2xl w-full">
+                    <p class="text-xs text-blue-300 uppercase tracking-widest font-bold mb-2"><i class="fa-solid fa-triangle-exclamation mr-2"></i>Aviso Legal</p>
+                    <p class="text-xs text-blue-200 font-light">Esta página é uma <strong>simulação fictícia da cidade SAMPA ROLEPLAY</strong>, criada apenas para fins de imersão em roleplay.<br><strong>Não é</strong> um canal oficial da Receita Federal do Brasil, do Governo Federal ou do portal gov.br — apenas uma ambientação inspirada nesses órgãos.<br>Nenhum dado inserido aqui é salvo, armazenado ou enviado a servidores externos.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DE SUCESSO (Formulários) -->
+    <div id="modal-success" class="fixed inset-0 z-[100] hidden flex items-center justify-center">
+        <div class="absolute inset-0 bg-gray-900 bg-opacity-70 backdrop-blur-sm" onclick="closeModal('modal-success')"></div>
+        <div class="relative bg-white rounded-xl shadow-2xl p-8 w-11/12 max-w-md text-center transform scale-95 transition-transform duration-300" id="modal-success-content">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-check text-3xl text-gov-green"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-2" id="modal-title">Sucesso!</h3>
+            <p class="text-gray-600 mb-6 text-sm" id="modal-desc">Sua solicitação foi registrada.</p>
+            
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-6 text-left">
+                <span class="block text-xs text-gray-500 uppercase font-semibold mb-1">Número do Protocolo Gerado</span>
+                <span class="block text-xl font-mono font-bold text-gov-dark tracking-widest" id="modal-protocol"></span>
+            </div>
+
+            <button onclick="closeModal('modal-success')" class="btn-viva w-full bg-gov-blue hover:bg-blue-700 text-white font-medium py-3 rounded-full transition-colors">
+                Concluir e Fechar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. Navigation Logic (SPA) ---
+        const sections = ['sec-inicio', 'sec-cnpj', 'sec-ir', 'sec-denuncia', 'sec-concurso'];
+
+        function navigate(targetId) {
+            // Hide all sections
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if(el) el.classList.remove('active');
+            });
+
+            // Show target
+            const targetEl = document.getElementById(targetId);
+            if(targetEl) {
+                targetEl.classList.add('active');
+                // Retrigger animation
+                targetEl.style.animation = 'none';
+                targetEl.offsetHeight; /* trigger reflow */
+                targetEl.style.animation = null; 
+            }
+
+            // Update Desktop Nav styles
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('bg-gov-blue', 'text-white', 'active-nav');
+                link.classList.add('text-gray-700');
+            });
+            const activeBtn = document.getElementById(targetId.replace('sec-', 'nav-'));
+            if(activeBtn) {
+                activeBtn.classList.remove('text-gray-700');
+                activeBtn.classList.add('bg-gov-blue', 'text-white', 'active-nav');
+            }
+
+            // Close mobile menu
+            document.getElementById('mobile-menu').classList.add('hidden');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // --- 2. Forms & Modals ---
+
+        // Webhook do canal de Discord para receber as solicitações de CNPJ
+        const WEBHOOK_CNPJ = "https://discord.com/api/webhooks/1549631309230645270/nq4Yt22vAQEl1AFP1Jc2gmTyD5-efBiqHVlBIexBcNDohkMP112vjrWSvJK3PUMzAmIf";
+
+        // Webhook do canal de Discord para receber as denúncias anônimas
+        const WEBHOOK_DENUNCIA = "https://discord.com/api/webhooks/1549631946127314996/4hh4yvlgMCcpZHRw3jspQgd2UP6t_rywk9DK_jVazI82KClEpoQvZF_bO94r5V5pm8Wo";
+
+        // Webhook do canal de Discord para receber as inscrições do Concurso
+        const WEBHOOK_CONCURSO = "https://discord.com/api/webhooks/1550326238269411359/VDgUxNOsCxPjqtxLnZJPTm0YJRpHDOmgNJ8Q6hLosT5cqRWUxDtwK3wbM4nZ0Nx0sUP5";
+
+        const LABELS_CATEGORIA_DENUNCIA = {
+            sonegacao: "Sonegação de Impostos",
+            contrabando: "Contrabando ou Descaminho",
+            pirataria: "Falsificação / Pirataria",
+            fraude: "Fraude Aduaneira",
+            outros: "Outras Irregularidades"
+        };
+
+        const LABELS_TIPO_EMPRESA = {
+            ei: "EI - Empresário Individual",
+            ltda: "Sociedade Limitada (LTDA)"
+        };
+        const LABELS_PORTE = {
+            pequena: "Pequena Empresa",
+            media: "Média Empresa",
+            grande: "Grande Empresa"
+        };
+
+        // Monta e envia o embed estruturado da solicitação de CNPJ para o Discord
+        function sendCnpjToDiscord(protocolo) {
+            const tipoValue = document.getElementById('tipo-empresa').value;
+            const porteValue = document.getElementById('cnpj-porte').value;
+
+            const razao = document.getElementById('cnpj-razao').value || "—";
+            const fantasia = document.getElementById('cnpj-fantasia').value || "—";
+            const rg = document.getElementById('cnpj-rg').value || "—";
+            const tipo = LABELS_TIPO_EMPRESA[tipoValue] || "—";
+            const cnae = document.getElementById('cnpj-cnae').value || "—";
+            const porte = LABELS_PORTE[porteValue] || "—";
+            const endereco = document.getElementById('cnpj-endereco').value || "—";
+            const cidade = document.getElementById('cnpj-cidade').value || "—";
+            const uf = document.getElementById('cnpj-uf').value || "—";
+            const telefone = document.getElementById('cnpj-telefone').value || "—";
+
+            const capitalNum = parseFloat(document.getElementById('cnpj-capital').value) || 0;
+            const capitalFormatado = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(capitalNum);
+
+            // Coleta os nomes de todos os sócios preenchidos (funciona com 1 ou várias caixas)
+            let sociosTexto = "Não se aplica (não é Sociedade Limitada)";
+            if (tipoValue === 'ltda') {
+                const nomesSocios = Array.from(document.querySelectorAll('#lista-socios input[name="socio[]"]'))
+                    .map(input => input.value.trim())
+                    .filter(nome => nome.length > 0);
+
+                sociosTexto = nomesSocios.length > 0
+                    ? nomesSocios.map((nome, i) => `**${i + 1}.** ${nome}`).join("\n")
+                    : "Nenhum sócio informado";
+            }
+
+            const embed = {
+                username: "Receita Federal • SAMPA ROLEPLAY",
+                avatar_url: "https://i.ibb.co/GLzS2B6/image.png",
+                embeds: [
+                    {
+                        title: "🏢 Nova Solicitação de Abertura de CNPJ",
+                        description: "Uma nova solicitação foi enviada pelo portal. Confira os dados abaixo:",
+                        color: 1266100, // Azul (#1351B4)
+                        fields: [
+                            { name: "📌 Protocolo", value: `\`${protocolo}\``, inline: false },
+                            { name: "🏷️ Razão Social", value: razao, inline: true },
+                            { name: "✨ Nome Fantasia", value: fantasia, inline: true },
+                            { name: "🪪 RG SAMPA do Responsável", value: rg, inline: true },
+                            { name: "📁 Tipo de Empresa", value: tipo, inline: true },
+                            { name: "📊 Porte da Empresa", value: porte, inline: true },
+                            { name: "💰 Capital Social", value: capitalFormatado, inline: true },
+                            { name: "🧾 Atividade Principal (CNAE)", value: cnae, inline: false },
+                            { name: "👥 Sócios da Empresa", value: sociosTexto, inline: false },
+                            { name: "📍 Endereço", value: endereco, inline: false },
+                            { name: "🏙️ Cidade / UF", value: `${cidade} / ${uf}`, inline: true },
+                            { name: "📞 Telefone", value: telefone, inline: true }
+                        ],
+                        footer: { text: "Simulação SAMPA ROLEPLAY • Não é órgão oficial" },
+                        timestamp: new Date().toISOString()
+                    }
+                ]
+            };
+
+            fetch(WEBHOOK_CNPJ, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(embed),
+                keepalive: true // garante que o envio complete mesmo se a aba ficar em segundo plano
+            })
+            .then(res => {
+                if (!res.ok) console.error("Discord (CNPJ) respondeu com erro:", res.status);
+            })
+            .catch(err => console.error("Erro ao enviar solicitação de CNPJ ao Discord:", err));
+        }
+
+        // Monta e envia o embed estruturado da denúncia anônima para o Discord
+        function sendDenunciaToDiscord(protocolo) {
+            const categoriaValue = document.getElementById('den-categoria').value;
+            const categoria = LABELS_CATEGORIA_DENUNCIA[categoriaValue] || "—";
+            const local = document.getElementById('den-local').value || "—";
+            const dataFato = document.getElementById('den-data').value || "Não informada";
+            const descricao = document.getElementById('den-descricao').value || "—";
+            const link = document.getElementById('den-link').value.trim();
+            const linkTexto = link.length > 0 ? link : "Nenhuma evidência anexada";
+
+            const embed = {
+                username: "Denúncias • SAMPA ROLEPLAY",
+                avatar_url: "https://i.ibb.co/GLzS2B6/image.png",
+                embeds: [
+                    {
+                        title: "📢 Nova Denúncia Anônima",
+                        description: "Uma nova denúncia foi registrada pelo portal. O sigilo do denunciante é mantido — nenhum dado de identificação é coletado.",
+                        color: 14427686, // Vermelho (#DC2626)
+                        fields: [
+                            { name: "📌 Protocolo", value: `\`${protocolo}\``, inline: false },
+                            { name: "🗂️ Categoria da Ocorrência", value: categoria, inline: true },
+                            { name: "📍 Local da Ocorrência", value: local, inline: true },
+                            { name: "📅 Data Aproximada do Fato", value: dataFato, inline: true },
+                            { name: "📝 Descrição Detalhada", value: descricao, inline: false },
+                            { name: "🖼️ Evidência (link)", value: linkTexto, inline: false }
+                        ],
+                        footer: { text: "Simulação SAMPA ROLEPLAY • Não é órgão oficial" },
+                        timestamp: new Date().toISOString()
+                    }
+                ]
+            };
+
+            fetch(WEBHOOK_DENUNCIA, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(embed),
+                keepalive: true // garante que o envio complete mesmo se a aba ficar em segundo plano
+            })
+            .then(res => {
+                if (!res.ok) console.error("Discord (Denúncia) respondeu com erro:", res.status);
+            })
+            .catch(err => console.error("Erro ao enviar denúncia ao Discord:", err));
+        }
+
+        // Monta e envia o embed estruturado da inscrição do Concurso para o Discord
+        function sendConcursoToDiscord(protocolo) {
+            const nomeReal = document.getElementById('con-nome-real').value || "—";
+            const nomePersonagem = document.getElementById('con-nome-personagem').value || "—";
+            const idade = document.getElementById('con-idade').value || "—";
+            const rgPersonagem = document.getElementById('con-rg-personagem').value || "—";
+            const discordId = document.getElementById('con-discord').value || "—";
+            const interesse = document.getElementById('con-interesse').value || "—";
+            const funcao = document.getElementById('con-funcao').value || "—";
+            const caracteristicas = document.getElementById('con-caracteristicas').value || "—";
+            const aduaneira = document.getElementById('con-aduaneira').value || "—";
+
+            const embed = {
+                username: "Concurso • SAMPA ROLEPLAY",
+                avatar_url: "https://i.ibb.co/GLzS2B6/image.png",
+                embeds: [
+                    {
+                        title: "🎓 Nova Inscrição — Concurso Receita Federal",
+                        description: "Uma nova inscrição foi enviada pelo portal. Confira os dados e as respostas do candidato abaixo:",
+                        color: 4405450, // Índigo (#4338CA)
+                        fields: [
+                            { name: "📌 Protocolo", value: `\`${protocolo}\``, inline: false },
+                            { name: "🙋 Nome Completo (Vida Real)", value: nomeReal, inline: true },
+                            { name: "🎭 Nome do Personagem", value: nomePersonagem, inline: true },
+                            { name: "🎂 Idade (Fora do RP)", value: idade, inline: true },
+                            { name: "🪪 RG do Personagem", value: rgPersonagem, inline: true },
+                            { name: "💬 ID do Discord", value: discordId, inline: true },
+                            { name: "❓ Por que se interessou pela Receita Federal", value: interesse, inline: false },
+                            { name: "❓ Qual a função da Receita Federal", value: funcao, inline: false },
+                            { name: "❓ Características boas e ruins", value: caracteristicas, inline: false },
+                            { name: "❓ Explicação da função aduaneira", value: aduaneira, inline: false }
+                        ],
+                        footer: { text: "Simulação SAMPA ROLEPLAY • Não é órgão oficial" },
+                        timestamp: new Date().toISOString()
+                    }
+                ]
+            };
+
+            fetch(WEBHOOK_CONCURSO, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(embed),
+                keepalive: true // garante que o envio complete mesmo se a aba ficar em segundo plano
+            })
+            .then(res => {
+                if (!res.ok) console.error("Discord (Concurso) respondeu com erro:", res.status);
+            })
+            .catch(err => console.error("Erro ao enviar inscrição do Concurso ao Discord:", err));
+        }
+
+
+        // Mostra/oculta a caixa de sócios quando "Sociedade Limitada" é selecionada
+        function toggleSocios() {
+            const tipo = document.getElementById('tipo-empresa').value;
+            const box = document.getElementById('box-socios');
+            const inputs = box.querySelectorAll('input');
+            if (tipo === 'ltda') {
+                box.classList.remove('hidden');
+                inputs.forEach(inp => inp.required = true);
+            } else {
+                box.classList.add('hidden');
+                inputs.forEach(inp => inp.required = false);
+            }
+        }
+
+        // Adiciona uma nova caixa de nome de sócio
+        function addSocio() {
+            const lista = document.getElementById('lista-socios');
+            const row = document.createElement('div');
+            row.className = 'flex gap-2';
+            row.innerHTML = `
+                <input type="text" name="socio[]" required class="w-full border border-gray-300 rounded-md p-2.5 text-sm" placeholder="Nome completo do sócio">
+                <button type="button" onclick="this.parentElement.remove()" class="btn-viva shrink-0 w-10 h-10 flex items-center justify-center rounded-md bg-red-50 text-red-500 hover:bg-red-100">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            `;
+            lista.appendChild(row);
+        }
+
+        function generateProtocol() {
+            const num = Math.floor(1000000000 + Math.random() * 9000000000).toString();
+            return num.substring(0,4) + '.' + num.substring(4,7) + '.' + num.substring(7,10);
+        }
+
+        function handleFormSubmit(e, type) {
+            e.preventDefault(); // Impede o envio real para o servidor
+            
+            let title = "";
+            let desc = "";
+            const protocolo = generateProtocol();
+
+            if(type === 'CNPJ') {
+                title = "Solicitação Enviada!";
+                desc = "Seu pedido de abertura de CNPJ foi registrado com sucesso. Acompanhe a análise utilizando o protocolo abaixo.";
+                sendCnpjToDiscord(protocolo);
+            } else if (type === 'Denúncia') {
+                title = "Denúncia Registrada!";
+                desc = "Sua manifestação foi enviada de forma segura, anônima e sigilosa aos órgãos de controle da Receita Federal.";
+                sendDenunciaToDiscord(protocolo);
+            } else if (type === 'Concurso') {
+                title = "Inscrição Enviada!";
+                desc = "Sua inscrição para o concurso foi registrada com sucesso. Fique atento ao seu Discord — o resultado será notificado por lá.";
+                sendConcursoToDiscord(protocolo);
+            }
+
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-desc').innerText = desc;
+            document.getElementById('modal-protocol').innerText = protocolo;
+            
+            // Show modal with slight delay for UX
+            setTimeout(() => {
+                const modal = document.getElementById('modal-success');
+                const content = document.getElementById('modal-success-content');
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    content.classList.remove('scale-95');
+                    content.classList.add('scale-100');
+                }, 10);
+                e.target.reset(); // Limpa o formulário
+            }, 500);
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('hidden');
+        }
+
+        // --- 3. Imposto de Renda Simulator ---
+        function simulateIR(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('sim-nome').value;
+            const rendimentos = parseFloat(document.getElementById('sim-renda').value) || 0;
+            const deducoes = parseFloat(document.getElementById('sim-deducoes').value) || 0;
+            const dependentes = parseInt(document.getElementById('sim-dependentes').value) || 0;
+
+            // Lógica fictícia simplificada
+            const deducaoDependentes = dependentes * 2275.08; 
+            const baseCalculo = rendimentos - deducoes - deducaoDependentes;
+            
+            let impostoDevido = 0;
+            let aliquotaEfetiva = 0;
+            const limiteIsencao = 30000; // Limite anual fictício p/ simulação
+
+            if (baseCalculo > limiteIsencao) {
+                // Cálculo fictício (15% sobre o excedente da isenção + alíquota base)
+                impostoDevido = (baseCalculo - limiteIsencao) * 0.20; 
+                aliquotaEfetiva = (impostoDevido / rendimentos) * 100;
+            }
+
+            // Formatação
+            const formatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+            
+            document.getElementById('sim-placeholder').classList.add('hidden');
+            const resultDiv = document.getElementById('sim-resultado');
+            
+            document.getElementById('sim-res-nome').innerText = `Contribuinte: ${nome.split(' ')[0]}`;
+            document.getElementById('sim-res-base').innerText = formatter.format(baseCalculo > 0 ? baseCalculo : 0);
+            document.getElementById('sim-res-aliq').innerText = aliquotaEfetiva.toFixed(2).replace('.', ',') + '%';
+            
+            const box = document.getElementById('sim-res-box');
+            const valorSpan = document.getElementById('sim-res-valor');
+            
+            if (impostoDevido <= 0) {
+                valorSpan.innerText = 'ISENTO';
+                box.className = 'p-4 rounded-lg text-center bg-green-50 border border-green-200 text-green-700';
+            } else {
+                valorSpan.innerText = formatter.format(impostoDevido);
+                box.className = 'p-4 rounded-lg text-center bg-red-50 border border-red-200 text-red-700';
+            }
+
+            resultDiv.classList.remove('hidden');
+        }
+
+        // --- Init ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Garante que o estado inicial está na tab Início
+            navigate('sec-inicio');
+        });
+
+    </script>
+</body>
+</html>
